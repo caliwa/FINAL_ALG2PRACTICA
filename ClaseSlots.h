@@ -30,7 +30,7 @@ class Slots{
 		bool ParqueaderoLleno();
 		void MostrarParqueadero();
 		int QuitarParqueadero();
-		void DiferenciaTiempo(int hor, int min, int seg);
+		void DiferenciaTiempo(int d);
 		void Llenar(Slots A);
 		void mostrarHora();
 		void Poner();

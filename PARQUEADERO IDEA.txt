@@ -1,0 +1,37 @@
+**Problema 9**
+
+Simular un parqueadero con una entrada y una salida con N celdas disponibles
+En cada celda se deben guardar los datos que permitan calcular el tiempo de estadia
+Igual se deben  guardar los datos de cuánto tiempo estuvo ocupada cada celda por día
+Se debe usar la estructura de datos adecuada
+
+
+**Solución a realizar**
+
+Los slots del parqueadero estarán representados cada uno por un nodo con sus atributos (Nombre, cedula del dueño del carro (si tiene moto no lo dejamos parquear, también podría ser otra estructura tipo nodo donde se podrían parquear pero con un límite y representación diferente) y generará la hora en la que se empezó a ingresar los datos (la hora real del PC), en caso de no poder hacer eso con algún comando se pedirá ingresar la hora del momento)
+El parqueadero será entre 16 y 30 nodos (número par siempre), que se imprimirán en todo momento simulando una matriz 2x15 o 3x10 (si es de 30 nodos). Esta cantidad está pensada para que se visualice cada lugar del parqueadero
+en el  cmd de forma amplia.
+
+Otra cosa también sería hacer 3 pisos o más (preferible 3 para que no sea tanta información que a la final esa profesora no se fijará) de parqueadero, esa parte la pienso yo como si por ejemplo elegimos 30 nodos, la estructura
+conformará 90 en total dividiéndolos en los 3 pisos EJ piso 1 tendrá A1 ... A30; piso 2 tendrá B1 .... B30; piso 3 tendrá C1 ... C30.  (esto aplica para las motos pero como dije al principio con un sistema diferente)
+
+Para llegar a los pisos es como lo del menú, dando la opción Ej:
+
+cout<<"Ingrese el piso que desea visualizar "; cin>>PisoaIngresar; //Como hacemos la base de datos operativa del parq, esto nos permite visualizar en todo momento el flujo interior del parqueadero.
+
+Luego se puede dar otra opción para retroceder de cualquier opción, para llegar al lugar donde se visualicen las casillas del parqueadero viendo el estado según si hay lugar (nodos) para parquear o no
+
+
+*LA HORA*
+Creo que esto es la cáscara del trabajo, por lo que pensando un sistema sería el siguiente:
+Se guarda la hora a la que llegó la persona a parquear el carro/moto (automático o que se ingrese la del PC exacta)
+Según el ejercicio se debe mirar el tiempo total que estuvo parqueado el carro/moto hasta que la persona lo decida sacar del parqueadero, entonces también cuenta que esté parqueado por días.
+Se registra la fecha, pero en especial el día y la hora. Si el carro/moto se saca el mismo día, la hora no puede ser menor a la ingresada (haciendo esto en hora militar todo), pero si el día es el siguiente
+o varios días después, ya no cuenta esto de que la hora no puede ser menor a la ingresada(todo esto con if y esas estructuras que toca hacer en sintaxis)
+Luego se hace un procedimiento para sacar las horas totales, que se le informa a la persona apenas salga del lugar.
+
+**EXTRA**
+Otra cosa es ver el estado de los nodos que estén ocupados, ver el nombre de la persona, cedula, numero de contacto, a que horas entro, modelo del carro/moto.
+
+
+La idea del ejercicio es dar unos nodos llenos para simular algo real, aunque también se podría indicar que los ingresen estando el parqueadero totalmente vacío.

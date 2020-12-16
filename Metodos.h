@@ -6,6 +6,7 @@
 using namespace std;
 
 
+
 Slots::Slots(int n)
 {
 	Limite = n-1;
@@ -31,46 +32,34 @@ Slots::Slots(int tiempoSeg, int Floor){
 Slots::~Slots(){
 }
 
-void Slots::DiferenciaTiempo(int hor, int min, int seg)
+void Slots::DiferenciaTiempo(int d)
 {
-	int horaSalida, minSalida, segSalida, Cent; 
+	if (vec[d-1]>=3600){
+		int horaSalida, minSalida, segSalida, Cent,TotalSalida,TotalEntrada,sec,hr,min; 
 	Cent = 0;
 	time_t now;
 	struct tm nowLocal;
 	now = time(NULL);
 	nowLocal=*localtime(&now);
-	horaSalida = nowLocal.tm_hour;
-	minSalida = nowLocal.tm_min;
+	horaSalida = nowLocal.tm_hour * 3600;
+	minSalida = nowLocal.tm_min * 60;
 	segSalida = nowLocal.tm_sec;
-	if(segSalida < seg)
-	{
-		minSalida = minSalida - 1;
-		segSalida = (segSalida + 60) - seg;		
+	TotalSalida = horaSalida+minSalida+segSalida;
+	TotalEntrada = vec[d-1];
+	cout<<TotalSalida<<"\n";
+	cout<<TotalEntrada<<"\n";
+	sec=TotalSalida-TotalEntrada;
+	hr = sec / (60*60);
+    sec %= 60*60;
+    min = sec / 60;
+    sec %= 60;
+    cout << hr << " horas " << min << " minutos y " << sec << " segundos"<<"\n";
+    vec[d-1] = d;
 	}
-	else
-	{
-		segSalida = segSalida - seg;
+	else{
+		cout<<"No hay vehiculo estacionado";
 	}
 	
-	if(horaSalida == hor && minSalida > min && segSalida > seg)
-	{
-		
-		(minSalida - 1) - min;
-		(segSalida + 6) - seg;
-		cout<<"Tiempo estando el vehículo parqueado: "<<minSalida<<":"<<segSalida;
-		Cent = 1;
-	}
-	else if(horaSalida == hor && minSalida > min && segSalida < seg)
-	{
-		minSalida - min;
-		segSalida - seg;
-		cout<<"Tiempo estando el vehículo parqueado: "<<minSalida<<":"<<segSalida;
-		Cent = 1;
-	}
-	if(Cent == 0)
-	{
-		cout<<"Hora: "<<horaSalida<<":"<<minSalida<<":"<<segSalida;
-	}
 }
 
 /*void Slots::ConfirmarEntrada()
@@ -192,7 +181,7 @@ void Slots::MostrarParqueadero()
 	cont = 0;
 	for(i = 0 ; i < 30 ; i++)
 	{	
-		if(cont == 10 || cont == 20 || cont == 20)
+		if(cont == 10 || cont == 20 || cont == 30)
 		{
 			cout<<"\n\n";
 		}
@@ -208,6 +197,7 @@ void Slots::MostrarParqueadero()
 		}
 		cont++;
 	}
+	
 }
 
 void Slots::Llenar(Slots A)
